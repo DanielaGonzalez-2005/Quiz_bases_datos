@@ -1,17 +1,10 @@
-# Quiz_bases_datos
-
-# 📊 Consultas SQL - Análisis TIC
+# Quiz
 
 Este repositorio contiene diferentes consultas SQL utilizadas para el análisis de datos de los periodos **2022** y **2023**.
 
 ---
 
-## 🔎 1. Consulta general y valores distintos
-
-Esta consulta permite:
-
-* Obtener todos los registros de la tabla `TIC2023`
-* Identificar los valores únicos de la columna `ACTIVIDAD_NOMBRE`
+## PUNTO1
 
 ```sql
 -- Consulta de todos los registros
@@ -27,9 +20,7 @@ FROM TIC2023;
 
 ---
 
-## 📈 2. Consulta de actividades (TIC 2022)
-
-Esta consulta selecciona información clave de actividades y la organiza por sede.
+## 📈 PUNTO2
 
 ```sql
 SELECT 
@@ -44,10 +35,7 @@ LIMIT 50;
 
 ---
 
-## 🏗️ 3. Creación de tabla resumen
-
-Se crea una tabla para almacenar un resumen de las sedes con restricciones de unicidad.
-
+## PUNTO3
 ```sql
 CREATE TABLE tic_sedes_resumen (
     resumen_id INT PRIMARY KEY,
@@ -61,10 +49,19 @@ CREATE TABLE tic_sedes_resumen (
 
 ---
 
-## 📊 4. Comparación de actividades entre 2022 y 2023
+## PUNTO4
+```sql
+SELECT 
+    SUBSTR(sede_codigo, 1, 2) AS departamento, 
+    COUNT(DISTINCT sede_codigo) AS conteo_sedes_unicas
+FROM TIC2023
+WHERE actividad_codigo = '05'
+GROUP BY SUBSTR(sede_codigo, 1, 2)
+ORDER BY conteo_sedes_unicas;
+```
 
-Esta consulta compara la cantidad de actividades por sede entre ambos años y calcula la tendencia.
-
+---
+## PUNTO5
 ```sql
 SELECT  
     t2.sede_codigo AS codigo_sede, 
@@ -84,13 +81,3 @@ HAVING COUNT(t2.sede_codigo) >= 2
 ORDER BY diferencia DESC
 LIMIT 30;
 ```
-
----
-
-## ✨ Notas
-
-* Las consultas están diseñadas para análisis exploratorio y comparativo.
-* Se utilizan funciones agregadas como `COUNT` y estructuras como `CASE` para generar métricas.
-* Se recomienda validar los nombres de columnas según el motor de base de datos utilizado.
-
----
