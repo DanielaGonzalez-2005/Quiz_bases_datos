@@ -1,7 +1,4 @@
 # Quiz
-
-Este repositorio contiene diferentes consultas SQL utilizadas para el análisis de datos de los periodos **2022** y **2023**.
-
 ---
 
 ## PUNTO1
@@ -20,7 +17,7 @@ FROM TIC2023;
 
 ---
 
-## 📈 PUNTO2
+## PUNTO2
 
 ```sql
 SELECT 
